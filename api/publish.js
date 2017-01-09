@@ -13,7 +13,7 @@ router.post('/publish', (req, res) => {
     }).catch((err) => {
         if(err) throw err;
     })
-})
+});
 
 // router.get('/comments/:id', (req, res) => {
 

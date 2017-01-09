@@ -21,19 +21,30 @@ router.get('/:subreddit', (req,res) => {
     });
 });
 
-router.post( '/comments/:id', ( req, res) => {
-    var id= req.params.id;
-    if (id.match(/^[0-9a-fA-F]{24}$/)) {
-        UserPosts.find({}, (err, post) => {
-            if(err)throw err;
-            else {
-                post = post.filter( (data) => data._id == id )
-                res.json({data:post});
-            }
-        });
-    } else {
-        res.json({success: false});
-    }
+router.post( '/comments/:id', (req, res) => {
+    const id= req.params.id;
+    UserPosts.findById(id, (err, post) => {
+
+        if(err) {
+            return res.status(500).json({
+                title: `No post was found by id: ${id}`,
+                error: err
+            })
+        }
+        else {
+            post.comments.push(req.body.value);
+            post.save(function (err, result) {
+                if(err) {
+                    return res.status(500).json({
+                        title: 'An error occurred when uploading a comment',
+                        error: err
+                    })
+                }
+
+                res.json(result);
+            });
+        }
+    });
 } );
 // router.post('/comments/:id', (req,res) => {
     
