@@ -14,9 +14,7 @@ const post = new Schema({
     community: {
     type: String
     },
-    comments: [{
-    type: Array
-    }], 
+    comments: [String],
     created_at: {
     type: Date,
     default: Date.now
