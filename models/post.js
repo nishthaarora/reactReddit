@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const post = new Schema({
+const postSchema = new Schema({
     author: {
       type: String
-    }, 
+    },
     title: {
       type: String
     },
@@ -15,8 +15,8 @@ const post = new Schema({
     type: String
     },
     comments: [{
-    type: Array
-    }], 
+      type: String
+    }],
     created_at: {
     type: Date,
     default: Date.now
@@ -26,5 +26,5 @@ const post = new Schema({
     }
 });
 
-var Post = mongoose.model('Post', post);
+var Post = mongoose.model('Post', postSchema);
 module.exports = Post;
