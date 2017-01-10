@@ -8,7 +8,9 @@ export default class Header extends Component {
 		<div className="container">
 	      <div className="jumbotron">
 	        <h2><strong>Reddit!</strong></h2>
-				<Link to="create">Create Post</Link>
+				<Link to="create">Create Post </Link>
+				|
+				<Link to="/"> Go to home page</Link>
 		  </div>			
 	    </div>
 		);

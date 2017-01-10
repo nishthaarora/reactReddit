@@ -20,10 +20,10 @@ export default class Form extends React.Component {
            if(res.data.success) {
                return alert('posted successfully');
            }
+           
         })
     }
     handleAuthorChange(event) {
-        console.log(event.target.value)
         this.setState({author: event.target.value.toLowerCase()})
     }
     handleTitleChange(event) {
@@ -63,16 +63,3 @@ export default class Form extends React.Component {
         )
     }
 }
-
-
-
-    // Form.propTypes = {
-    //     title(props, propName, component) {
-    //         console.log('prop', props);
-    //         console.log('propName', propsName);
-    //         console.log('component', component);
-    //     }
-    //     // title: React.PropTypes.string.isRequired,
-    //     // content: React.PropTypes.string.isRequired,
-    //     // community: React.PropTypes.string.isRequired
-    // }

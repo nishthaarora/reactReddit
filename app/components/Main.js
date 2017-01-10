@@ -9,13 +9,14 @@ export default class Main extends React.Component {
         super();
         this.state = {
             posts:[],
+            comments: [],
             date: []
         }
     }
     
     componentDidMount() {
      axios.get('/posts').then((posts) => {
-        this.setState({posts: posts.data.posts})
+        this.setState({posts: posts.data.posts});
     });
     }
     

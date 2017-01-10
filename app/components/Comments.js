@@ -17,7 +17,9 @@ export default class Comments extends React.Component {
         handleSubmit(event) {
             event.preventDefault();
             axios.post('create/comments/'+ this.props.params.id, {value: this.state.comment}).then((res) => {
-                console.log('res', res);
+                res.data.comments.map((allComments) => {
+                    console.log(allComments)
+                })                
             })
         }
         
@@ -35,3 +37,4 @@ export default class Comments extends React.Component {
     }
 }
 
+const allComments = (props) => (<ul><li> {props.children} </li></ul>)
