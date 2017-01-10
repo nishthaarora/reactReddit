@@ -23,6 +23,7 @@ export default class Form extends React.Component {
         })
     }
     handleAuthorChange(event) {
+        console.log(event.target.value)
         this.setState({author: event.target.value.toLowerCase()})
     }
     handleTitleChange(event) {

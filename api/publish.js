@@ -15,27 +15,33 @@ router.post('/publish', (req, res) => {
     })
 })
 
-// router.get('/comments/:id', (req, res) => {
+router.post('/comments/:id', (req,res) => {
+    const id= req.params.id;
+     UserPosts.findById(id, (err, post) => {
 
-//     var id =  req.params.id;
-//     console.log(id)
-//     UserPosts.findById(id).exec((err,doc) => {
-//         if(err) throw err;
-//        else { console.log(doc) }
-//     })
+         if(err) {
+             return res.status(500).json({
+                 title: `No post was found by id: ${id}`,
+                 error: err
+             })
+         }
+         else {
+             post.comments.push(req.body.value);
+             console.log(post)
+             post.save(function (err, result) {
+                 if(err) {
+                     return res.status(500).json({
+                         title: 'An error occurred when uploading a comment',
+                         error: err
+                     })
+                 }
 
-// //   try {
-// //     var _id = mongoose.Types.ObjectId.fromString(id);  
-// //     console.log(_id)
-// //         UserPosts.findOneAndUpdate({_id: id}, { $set: {comments: req.body.value} }, { new: true }, (err, doc) => {
-// //         if(err)throw err;
-// //       return res.json({success:true});
-        
-// //     });
-// //   }catch (err) {
-// //       res.status(404).send('Page Not found')
-// //   } 
-// })
+                 res.json(result);
+             });
+         }
+     });
+
+})
 
 
 module.exports = router;

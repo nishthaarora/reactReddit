@@ -7,7 +7,6 @@ export default class Comments extends React.Component {
             super();
             this.state = {
                 comment:""
-
             }
         }
 
@@ -17,8 +16,8 @@ export default class Comments extends React.Component {
 
         handleSubmit(event) {
             event.preventDefault();
-            axios.post('posts/comments/'+ this.props.params.id, {value: this.state.comment}).then((res) => {
-                console.log(res);
+            axios.post('create/comments/'+ this.props.params.id, {value: this.state.comment}).then((res) => {
+                console.log('res', res);
             })
         }
         
