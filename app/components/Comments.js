@@ -37,4 +37,4 @@ export default class Comments extends React.Component {
     }
 }
 
-const allComments = (props) => (<ul><li> {props.comm} </li></ul>)
+const allComments = (props) => (console.log(props))
