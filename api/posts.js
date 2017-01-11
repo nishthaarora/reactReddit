@@ -15,10 +15,19 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/:subreddit', (req,res) => {
-    UserPosts.find({community: req.params.subreddit}, (err, result) => {
+router.get('/:subreddId', (req,res) => {
+    UserPosts.find({community: req.params.subreddId}, (err, result) => {
         res.json(result);
     });
 });
+
+router.get('/comments/:postId', (req, res) => {
+    var id = req.params.postId;
+    UserPosts.findById(id, (err, post) => {
+        if(err)throw(err);
+        res.json({post})
+    })
+})
+
 
 module.exports = router;

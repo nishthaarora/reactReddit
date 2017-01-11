@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UserPosts = require('../models/post');
+const mongoose = require( 'mongoose' );
 
 router.post('/publish', (req, res) => {
     UserPosts.create({
@@ -17,10 +18,12 @@ router.post('/publish', (req, res) => {
 
 router.post('/comments/:id', (req,res) => {
     const id= req.params.id;
-     UserPosts.findById(id, (err, post) => {
+    const ObjectId = mongoose.mongo.ObjectID;
+     UserPosts.findById(ObjectId(id), (err, post) => {
 
          if(err) {
-             return res.status(500).json({
+            console.log(err);
+             return res.json({
                  title: `No post was found by id: ${id}`,
                  error: err
              })
@@ -42,6 +45,9 @@ router.post('/comments/:id', (req,res) => {
      });
 
 })
+
+
+
 
 
 module.exports = router;
